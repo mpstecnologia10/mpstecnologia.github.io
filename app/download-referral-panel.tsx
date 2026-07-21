@@ -1,13 +1,21 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const downloadHref =
   'https://github.com/mpstecnologia10/mpstecnologia.github.io/releases/latest/download/minha-comissao.apk';
 
 export function DownloadReferralPanel() {
-  const searchParams = useSearchParams();
-  const referralCode = searchParams.get('ref')?.trim().toUpperCase() ?? '';
+  const [referralCode, setReferralCode] = useState('');
+
+  useEffect(() => {
+    const code =
+      new URLSearchParams(window.location.search)
+        .get('ref')
+        ?.trim()
+        .toUpperCase() ?? '';
+    setReferralCode(code);
+  }, []);
 
   return (
     <section className="download-panel" id="download">
