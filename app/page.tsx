@@ -1,4 +1,7 @@
 import Image from 'next/image';
+import { Suspense } from 'react';
+
+import { DownloadReferralPanel } from './download-referral-panel';
 
 const whatsappHref =
   'https://wa.me/5566999949841?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20app%20Minha%20Comiss%C3%A3o.';
@@ -97,6 +100,7 @@ export default function Home() {
 
           <nav className="topnav">
             <a href="#produto">Produto</a>
+            <a href="#download">Download</a>
             <a href="#planos">Planos</a>
             <a href="#contato">Contato</a>
           </nav>
@@ -126,11 +130,9 @@ export default function Home() {
                 <div className="hero-actions">
                   <a
                     className="button primary"
-                    href={whatsappHref}
-                    target="_blank"
-                    rel="noreferrer"
+                    href="#download"
                   >
-                    Falar no WhatsApp
+                    Baixar app
                   </a>
                   <a className="button secondary" href="#produto">
                     Ver o produto
@@ -165,6 +167,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <Suspense fallback={null}>
+          <DownloadReferralPanel />
+        </Suspense>
 
         <section className="section" id="produto">
           <div className="section-header">
