@@ -8,6 +8,7 @@ const assetBasePath = process.env.GITHUB_ACTIONS === 'true'
 
 const whatsappHref =
   'https://wa.me/5566999949841?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20app%20Minha%20Comiss%C3%A3o.';
+const emailHref = 'mailto:mpstecnologia10@gmail.com';
 
 const features = [
   {
@@ -256,6 +257,20 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="contact-item">
+                  <div className="contact-icon">@</div>
+                  <div>
+                    <small>E-mail</small>
+                    <a href={emailHref}>mpstecnologia10@gmail.com</a>
+                  </div>
+                </div>
+                <div className="contact-item">
+                  <div className="contact-icon">MEI</div>
+                  <div>
+                    <small>Responsável</small>
+                    <span>MPS TECNOLOGIA · CNPJ 65.014.859/0001-03</span>
+                  </div>
+                </div>
+                <div className="contact-item">
                   <div className="contact-icon">MP</div>
                   <div>
                     <small>Pagamento</small>
@@ -299,8 +314,7 @@ export default function Home() {
 
         <footer className="footer">
           <div className="footer-line">
-            Minha Comissão · controle de comissões, viagens, despesas,
-            consumo, relatórios e acesso.
+            Minha Comissão · MPS TECNOLOGIA · CNPJ 65.014.859/0001-03.
           </div>
         </footer>
       </div>

@@ -526,9 +526,14 @@ h1 {
   margin-bottom: 1px;
 }
 
-.contact-item span {
+.contact-item span,
+.contact-item a {
   color: var(--text);
   font-weight: 700;
+}
+
+.contact-item a {
+  overflow-wrap: anywhere;
 }
 
 .contact-note {
