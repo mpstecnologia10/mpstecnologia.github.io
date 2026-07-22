@@ -1,7 +1,10 @@
-import Image from 'next/image';
 import { Suspense } from 'react';
 
 import { DownloadReferralPanel } from './download-referral-panel';
+
+const assetBasePath = process.env.GITHUB_ACTIONS === 'true'
+  ? '/mpstecnologia.github.io'
+  : '';
 
 const whatsappHref =
   'https://wa.me/5566999949841?text=Ol%C3%A1%2C%20quero%20conhecer%20o%20app%20Minha%20Comiss%C3%A3o.';
@@ -84,13 +87,12 @@ export default function Home() {
       <div className="shell">
         <header className="topbar">
           <div className="brand">
-            <Image
-              src="/app-icon.png"
+            <img
+              src={`${assetBasePath}/app-icon.png`}
               alt="Ícone do app Minha Comissão"
               width={44}
               height={44}
               className="brand-icon"
-              priority
             />
             <div className="brand-copy">
               <strong>Minha Comissão</strong>
