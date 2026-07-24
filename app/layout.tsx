@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Minha Comissão | Controle para motoristas',
   description:
     'App para motoristas e transportadores acompanharem comissões, viagens, consumo, relatórios, campanhas e acesso em um só lugar.',
+  icons: {
+    icon: '/app-icon.png',
+    apple: '/app-icon.png',
+  },
 };
 
 export default function RootLayout({

@@ -113,6 +113,19 @@ export default function Home() {
           <div className="hero-panel">
             <div className="hero-grid">
               <div className="hero-content">
+                <div className="hero-logo-lockup">
+                  <img
+                    src={`${assetBasePath}/mps-logo.png`}
+                    alt="Logo da MPS Tecnologia"
+                    width={72}
+                    height={72}
+                    className="hero-logo"
+                  />
+                  <div>
+                    <strong>MPS Tecnologia</strong>
+                    <span>Minha Comissão</span>
+                  </div>
+                </div>
                 <div className="eyebrow">
                   Teste grátis, pagamento, relatórios e indicação
                 </div>
