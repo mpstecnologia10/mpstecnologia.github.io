@@ -129,6 +129,7 @@ img {
     radial-gradient(circle at bottom left, rgba(245, 228, 191, 0.75), transparent 30%);
   border: 1px solid rgba(77, 59, 46, 0.1);
   box-shadow: var(--shadow);
+  animation: panel-in 0.7s ease both;
 }
 
 .hero-panel::before {
@@ -304,6 +305,24 @@ h1 {
 .console-card {
   padding: 18px;
   border-radius: 20px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: card-in 0.65s ease both;
+}
+
+.console-card:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.console-card:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.console-card:hover,
+.feature-card:hover,
+.plan-card:hover,
+.step-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 38px rgba(66, 44, 31, 0.12);
 }
 
 .console-card strong,
@@ -434,6 +453,8 @@ h1 {
 .feature-card {
   border-radius: 22px;
   padding: 18px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: card-in 0.65s ease both;
 }
 
 .feature-eyebrow {
@@ -457,6 +478,8 @@ h1 {
 .plan-card {
   border-radius: 24px;
   padding: 18px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: card-in 0.65s ease both;
 }
 
 .plan-top {
@@ -490,6 +513,8 @@ h1 {
 .step-card {
   border-radius: 24px;
   padding: 18px;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  animation: card-in 0.65s ease both;
 }
 
 .step-number {
@@ -587,6 +612,39 @@ h1 {
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (max-width: 1024px) {
