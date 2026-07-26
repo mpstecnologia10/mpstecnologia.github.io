@@ -35,6 +35,12 @@ const features = [
     text:
       'O resultado sai pronto para abrir, compartilhar ou imprimir, no Android e com base pronta para iOS.',
   },
+  {
+    eyebrow: 'Modo offline',
+    title: 'Lançamentos mesmo sem sinal',
+    text:
+      'Comissões e viagens podem ser registradas sem internet e sincronizadas automaticamente quando a conexão voltar.',
+  },
 ];
 
 const plans = [
@@ -193,6 +199,46 @@ export default function Home() {
                 <span>{item.text}</span>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section className="section offline-section" id="offline">
+          <div className="offline-panel">
+            <div className="section-header">
+              <div className="feature-eyebrow">Funcionamento em campo</div>
+              <h2>Modo offline reduzido</h2>
+              <p>
+                O motorista não precisa interromper o trabalho por falta de
+                sinal. O app guarda os lançamentos permitidos no aparelho e
+                envia tudo ao Supabase assim que a internet voltar.
+              </p>
+            </div>
+
+            <div className="offline-grid">
+              <article className="offline-card">
+                <strong>Sem internet</strong>
+                <span>
+                  Registre comissões, viagens, despesas e consumo já disponíveis
+                  no aparelho. O app mostra que o lançamento está pendente de
+                  sincronização.
+                </span>
+              </article>
+              <article className="offline-card accent">
+                <strong>Ao reconectar</strong>
+                <span>
+                  A fila é enviada automaticamente, com proteção contra
+                  duplicidade. O usuário acompanha o resultado quando os dados
+                  forem confirmados no servidor.
+                </span>
+              </article>
+              <article className="offline-card">
+                <strong>Limites claros</strong>
+                <span>
+                  Login, pagamentos, alterações administrativas e dados ainda
+                  não carregados precisam de internet para funcionar.
+                </span>
+              </article>
+            </div>
           </div>
         </section>
 
