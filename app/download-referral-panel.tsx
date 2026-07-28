@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 const downloadHref =
   'https://github.com/mpstecnologia10/mpstecnologia.github.io/releases/latest/download/minha-comissao.apk';
+const webAppHref =
+  'https://mpstecnologia10.github.io/mpstecnologia.github.io/app/';
 
 export function DownloadReferralPanel() {
   const [referralCode, setReferralCode] = useState('');
@@ -46,9 +48,12 @@ export function DownloadReferralPanel() {
         <a className="button primary full" href={downloadHref}>
           Baixar app Android
         </a>
+        <a className="button secondary full" href={webAppHref}>
+          Abrir no iPhone ou computador
+        </a>
         <p className="download-note">
-          No primeiro uso, o Android pode pedir autorização para instalar apps
-          baixados pelo navegador.
+          No Android, o sistema pode pedir autorização para instalar o APK. No
+          iPhone, abra a versão Web pelo Safari e adicione à Tela de Início.
         </p>
       </div>
     </section>
