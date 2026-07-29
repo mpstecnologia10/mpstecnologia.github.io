@@ -2788,6 +2788,7 @@ limitations under the License.
 --------------------------------------------------------------------------------
 cross_file
 go_router
+listen
 path_provider
 path_provider_android
 path_provider_foundation
@@ -22960,6 +22961,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 jni_flutter
+jni_util
 
 Copyright 2026, the Dart project authors.
 
