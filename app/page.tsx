@@ -15,7 +15,7 @@ const features = [
     eyebrow: 'Comissionado',
     title: 'Lançamentos por tipo de comissão',
     text:
-      'Frete por tonelada, por peso, frete líquido, km rodado ou valor fixo em uma rotina limpa e rápida.',
+      'Frete por tonelada, frete bruto, frete líquido, km rodado ou valor fixo em uma rotina limpa e rápida.',
   },
   {
     eyebrow: 'Autônomo',
@@ -84,7 +84,8 @@ const steps = [
   {
     number: '03',
     title: 'Renova ou indica',
-    text: 'Mercado Pago, campanhas, descontos e indicação ficam centralizados.',
+    text:
+      'Mercado Pago, campanhas e indicação ficam centralizados, com descontos progressivos quando a campanha estiver ativa.',
   },
 ];
 
@@ -218,17 +219,17 @@ export default function Home() {
               <article className="offline-card">
                 <strong>Sem internet</strong>
                 <span>
-                  Registre comissões, viagens, despesas e consumo já disponíveis
-                  no aparelho. O app mostra que o lançamento está pendente de
-                  sincronização.
+                  Registre comissões e viagens já disponíveis no aparelho. Os
+                  dados locais ficam criptografados e vinculados à conta do
+                  motorista até a sincronização.
                 </span>
               </article>
               <article className="offline-card accent">
                 <strong>Ao reconectar</strong>
                 <span>
                   A fila é enviada automaticamente, com proteção contra
-                  duplicidade. O usuário acompanha o resultado quando os dados
-                  forem confirmados no servidor.
+                  duplicidade. Se necessário, o usuário também pode revisar e
+                  sincronizar manualmente os itens pendentes.
                 </span>
               </article>
               <article className="offline-card">
