@@ -16,8 +16,15 @@ export function DownloadReferralPanel() {
         .get('ref')
         ?.trim()
         .toUpperCase() ?? '';
-    setReferralCode(code);
+    setReferralCode(/^[A-Z0-9]{4,32}$/.test(code) ? code : '');
   }, []);
+
+  const attributedWebAppHref = referralCode
+    ? `${webAppHref}?ref=${encodeURIComponent(referralCode)}`
+    : webAppHref;
+  const attributedAndroidHref = referralCode
+    ? `minhacomissao://referral?ref=${encodeURIComponent(referralCode)}`
+    : '';
 
   return (
     <section className="download-panel" id="download">
@@ -35,7 +42,10 @@ export function DownloadReferralPanel() {
           <div className="referral-box">
             <small>Código de indicação recebido</small>
             <strong>{referralCode}</strong>
-            <span>Use este código no cadastro para vincular a indicação.</span>
+            <span>
+              O app preencherá este código automaticamente e não permitirá
+              alterações.
+            </span>
           </div>
         ) : (
           <div className="referral-box neutral">
@@ -48,12 +58,18 @@ export function DownloadReferralPanel() {
         <a className="button primary full" href={downloadHref}>
           Baixar app Android
         </a>
-        <a className="button secondary full" href={webAppHref}>
+        {referralCode ? (
+          <a className="button secondary full" href={attributedAndroidHref}>
+            Abrir app com indicação
+          </a>
+        ) : null}
+        <a className="button secondary full" href={attributedWebAppHref}>
           Abrir no iPhone ou computador
         </a>
         <p className="download-note">
-          No Android, o sistema pode pedir autorização para instalar o APK. No
-          iPhone, abra a versão Web pelo Safari e adicione à Tela de Início.
+          No Android, instale o APK, volte a esta página e toque em “Abrir app
+          com indicação”. O sistema pode pedir autorização para instalar o APK.
+          No iPhone, abra a versão Web pelo Safari e adicione à Tela de Início.
         </p>
       </div>
     </section>
