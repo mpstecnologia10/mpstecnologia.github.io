@@ -1,0 +1,36 @@
+{
+    "name": "Minha Comissão",
+    "short_name": "Comissão",
+    "id": "./",
+    "start_url": "./#/auth",
+    "scope": "./",
+    "display": "standalone",
+    "background_color": "#F6F1EB",
+    "theme_color": "#7E5848",
+    "description": "Controle de comissões, viagens, despesas e consumo para motoristas.",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}
