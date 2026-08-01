@@ -114,14 +114,66 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
-  <script src="flutter_bootstrap.js" async=""></script>
   <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('pwa_service_worker.js');
-      });
-    }
+    (() => {
+      let registration = null;
+      let applyingUpdate = false;
+
+      const notifyUpdateReady = () => {
+        window.dispatchEvent(new Event('minha-comissao-update-ready'));
+      };
+
+      window.minhaComissaoIsPwaUpdateReady = () =>
+        Boolean(registration?.waiting && navigator.serviceWorker.controller);
+
+      const observeInstallingWorker = (worker) => {
+        if (!worker) return;
+        worker.addEventListener('statechange', () => {
+          if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+            notifyUpdateReady();
+          }
+        });
+      };
+
+      window.minhaComissaoApplyPwaUpdate = () => {
+        if (!registration?.waiting) return false;
+        applyingUpdate = true;
+        registration.waiting.postMessage({type: 'SKIP_WAITING'});
+        return true;
+      };
+
+      window.minhaComissaoCheckPwaUpdate = () => registration?.update();
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (applyingUpdate) window.location.reload();
+        });
+
+        window.addEventListener('load', async () => {
+          try {
+            registration = await navigator.serviceWorker.register(
+              'pwa_service_worker.js',
+              {updateViaCache: 'none'}
+            );
+            if (registration.waiting && navigator.serviceWorker.controller) {
+              notifyUpdateReady();
+            }
+            registration.addEventListener('updatefound', () => {
+              observeInstallingWorker(registration.installing);
+            });
+            await registration.update();
+          } catch (error) {
+            console.warn('Não foi possível verificar a atualização do PWA.', error);
+          }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') registration?.update();
+        });
+      }
+    })();
   </script>
+  <script src="flutter_bootstrap.js" async=""></script>
 
 
 </body></html>

@@ -1,4 +1,5 @@
-const CACHE_NAME = 'minha-comissao-shell-v1';
+const CACHE_PREFIX = 'minha-comissao-shell-';
+const CACHE_NAME = `${CACHE_PREFIX}1.0.8-10-4db6a591945a`;
 const OFFLINE_URL = 'offline.html';
 
 self.addEventListener('install', (event) => {
@@ -11,7 +12,12 @@ self.addEventListener('install', (event) => {
       ])
     )
   );
-  self.skipWaiting();
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 
 self.addEventListener('activate', (event) => {
@@ -19,7 +25,7 @@ self.addEventListener('activate', (event) => {
     caches.keys().then((keys) =>
       Promise.all(
         keys
-          .filter((key) => key !== CACHE_NAME)
+          .filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
           .map((key) => caches.delete(key))
       )
     )
