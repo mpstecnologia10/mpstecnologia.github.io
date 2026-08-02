@@ -33,7 +33,7 @@ const features = [
     eyebrow: 'Relatórios',
     title: 'PDF, compartilhar e imprimir',
     text:
-      'O resultado sai pronto para abrir, compartilhar ou imprimir, no Android e com base pronta para iOS.',
+      'O resultado sai pronto para abrir, compartilhar ou imprimir no Android, iPhone, iPad e computador.',
   },
   {
     eyebrow: 'Modo offline',
@@ -73,8 +73,9 @@ const plans = [
 const steps = [
   {
     number: '01',
-    title: 'Instala e cria a conta',
-    text: 'O usuário entra com teste grátis e já vê o app pronto para usar.',
+    title: 'Cria a conta e depois instala',
+    text:
+      'A indicação fica protegida antes do download. Android segue para o APK; iPhone, iPad e computador usam o navegador.',
   },
   {
     number: '02',
@@ -142,7 +143,7 @@ export default function Home() {
                     className="button primary"
                     href="#download"
                   >
-                    Baixar app
+                    Criar conta
                   </a>
                   <a className="button secondary" href="#produto">
                     Ver o produto

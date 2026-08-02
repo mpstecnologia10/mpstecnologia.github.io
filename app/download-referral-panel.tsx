@@ -2,13 +2,14 @@
 
 import { useEffect, useState } from 'react';
 
-const downloadHref =
-  'https://github.com/mpstecnologia10/mpstecnologia.github.io/releases/latest/download/minha-comissao.apk';
 const webAppHref =
   'https://mpstecnologia10.github.io/mpstecnologia.github.io/app/';
 
 export function DownloadReferralPanel() {
   const [referralCode, setReferralCode] = useState('');
+  const [platform, setPlatform] = useState<'android' | 'ios' | 'desktop'>(
+    'desktop',
+  );
 
   useEffect(() => {
     const code =
@@ -17,23 +18,29 @@ export function DownloadReferralPanel() {
         ?.trim()
         .toUpperCase() ?? '';
     setReferralCode(/^[A-Z0-9]{4,32}$/.test(code) ? code : '');
+    const userAgent = navigator.userAgent;
+    setPlatform(
+      /Android/i.test(userAgent)
+        ? 'android'
+        : /iPhone|iPad|iPod/i.test(userAgent)
+          ? 'ios'
+          : 'desktop',
+    );
   }, []);
 
   const attributedWebAppHref = referralCode
-    ? `${webAppHref}?ref=${encodeURIComponent(referralCode)}`
-    : webAppHref;
-  const attributedAndroidHref = referralCode
-    ? `minhacomissao://referral?ref=${encodeURIComponent(referralCode)}`
-    : '';
+    ? `${webAppHref}?cadastro=1&ref=${encodeURIComponent(referralCode)}`
+    : `${webAppHref}?cadastro=1`;
 
   return (
     <section className="download-panel" id="download">
       <div>
-        <div className="feature-eyebrow">Download Android</div>
-        <h2>Baixe a versão mais recente</h2>
+        <div className="feature-eyebrow">Comece por aqui</div>
+        <h2>Crie sua conta antes de instalar</h2>
         <p>
-          O APK fica publicado no GitHub Releases. Quando houver atualização, o
-          botão aponta sempre para a versão marcada como mais recente.
+          Assim o cadastro e a indicação ficam protegidos. No Android, o APK é
+          oferecido após o cadastro. No iPhone, iPad ou computador, o acesso
+          continua pelo navegador.
         </p>
       </div>
 
@@ -51,25 +58,27 @@ export function DownloadReferralPanel() {
           <div className="referral-box neutral">
             <small>Instalação direta</small>
             <strong>Teste grátis</strong>
-            <span>Após instalar, crie sua conta e escolha seu perfil.</span>
+            <span>Crie a conta e escolha seu perfil antes da instalação.</span>
           </div>
         )}
 
-        <a className="button primary full" href={downloadHref}>
-          Baixar app Android
+        <a className="button primary full" href={attributedWebAppHref}>
+          {platform === 'android'
+            ? 'Criar conta e baixar Android'
+            : platform === 'ios'
+              ? 'Criar conta no iPhone/iPad'
+              : 'Criar conta no computador'}
         </a>
-        {referralCode ? (
-          <a className="button secondary full" href={attributedAndroidHref}>
-            Abrir app com indicação
-          </a>
-        ) : null}
-        <a className="button secondary full" href={attributedWebAppHref}>
-          Abrir no iPhone ou computador
+        <a className="button secondary full" href={webAppHref}>
+          Já tenho conta — abrir versão Web
         </a>
         <p className="download-note">
-          No Android, instale o APK, volte a esta página e toque em “Abrir app
-          com indicação”. O sistema pode pedir autorização para instalar o APK.
-          No iPhone, abra a versão Web pelo Safari e adicione à Tela de Início.
+          {platform === 'android'
+            ? 'Depois do cadastro, o download do Android será iniciado e o uso continuará no aplicativo instalado.'
+            : platform === 'ios'
+              ? 'Depois do cadastro, use pelo Safari e adicione o Minha Comissão à Tela de Início.'
+              : 'Depois do cadastro, use o Minha Comissão diretamente neste computador.'}{' '}
+          O código recebido pelo link não poderá ser alterado.
         </p>
       </div>
     </section>
