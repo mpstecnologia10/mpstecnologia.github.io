@@ -1,0 +1,179 @@
+<!DOCTYPE html><html><head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/mpstecnologia.github.io/app/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Controle de comissões, viagens, despesas e consumo para motoristas.">
+  <meta name="theme-color" content="#7E5848">
+  <meta name="color-scheme" content="light">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Minha Comissão">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <title>Minha Comissão</title>
+  <link rel="manifest" href="manifest.json">
+
+
+  <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+  <style id="splash-screen-style">
+    html {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      background-color: #F8F7F4;
+      background-size: 100% 100%;
+      overscroll-behavior: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    .contain {
+      display:block;
+      width:100%; height:100%;
+      object-fit: contain;
+    }
+
+    .stretch {
+      display:block;
+      width:100%; height:100%;
+    }
+
+    .cover {
+      display:block;
+      width:100%; height:100%;
+      object-fit: cover;
+    }
+
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      -ms-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
+
+    .bottomLeft {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    .bottomRight {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+  <script id="splash-screen-script">
+    function removeSplashFromWeb() {
+      document.getElementById("splash")?.remove();
+      document.getElementById("splash-branding")?.remove();
+      document.body.style.background = "transparent";
+    }
+  </script>
+</head>
+<body>
+
+  <!--
+    You can customize the "flutter_bootstrap.js" script.
+    This is useful to provide a custom configuration to the Flutter loader
+    or to give the user feedback during the initialization process.
+
+    For more details:
+    * https://docs.flutter.dev/platform-integration/web/initialization
+  -->
+  <script>
+    (() => {
+      let registration = null;
+      let applyingUpdate = false;
+
+      const notifyUpdateReady = () => {
+        window.dispatchEvent(new Event('minha-comissao-update-ready'));
+      };
+
+      window.minhaComissaoIsPwaUpdateReady = () =>
+        Boolean(registration?.waiting && navigator.serviceWorker.controller);
+
+      const observeInstallingWorker = (worker) => {
+        if (!worker) return;
+        worker.addEventListener('statechange', () => {
+          if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+            notifyUpdateReady();
+          }
+        });
+      };
+
+      window.minhaComissaoApplyPwaUpdate = () => {
+        if (!registration?.waiting) return false;
+        applyingUpdate = true;
+        registration.waiting.postMessage({type: 'SKIP_WAITING'});
+        return true;
+      };
+
+      window.minhaComissaoCheckPwaUpdate = () => registration?.update();
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (applyingUpdate) window.location.reload();
+        });
+
+        window.addEventListener('load', async () => {
+          try {
+            registration = await navigator.serviceWorker.register(
+              'pwa_service_worker.js',
+              {updateViaCache: 'none'}
+            );
+            if (registration.waiting && navigator.serviceWorker.controller) {
+              notifyUpdateReady();
+            }
+            registration.addEventListener('updatefound', () => {
+              observeInstallingWorker(registration.installing);
+            });
+            await registration.update();
+          } catch (error) {
+            console.warn('Não foi possível verificar a atualização do PWA.', error);
+          }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') registration?.update();
+        });
+      }
+    })();
+  </script>
+  <script src="flutter_bootstrap.js" async=""></script>
+
+
+</body></html>
