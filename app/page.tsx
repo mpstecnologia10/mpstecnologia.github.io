@@ -24,10 +24,10 @@ const features = [
       'Receitas, despesas da viagem, consumo e relatório mensal em uma leitura prática no celular.',
   },
   {
-    eyebrow: 'Admin',
-    title: 'Cobrança e acesso',
+    eyebrow: 'Acesso',
+    title: 'Teste grátis e renovação',
     text:
-      'Painel para liberar, bloquear, renovar, aplicar promoções e gerenciar pagamentos com menos atrito.',
+      'Comece pelo teste grátis e escolha o plano que combina com a sua rotina quando quiser continuar.',
   },
   {
     eyebrow: 'Relatórios',
@@ -73,20 +73,20 @@ const plans = [
 const steps = [
   {
     number: '01',
-    title: 'Cria a conta e depois instala',
+    title: 'Entre ou crie sua conta',
     text:
-      'A indicação fica protegida antes do download. Android segue para o APK; iPhone, iPad e computador usam o navegador.',
+      'Use sua conta Google para começar de forma rápida e segura.',
   },
   {
     number: '02',
-    title: 'Registra e acompanha',
-    text: 'Os lançamentos entram no relatório e no resumo mensal com consistência.',
+    title: 'Registre seu trabalho',
+    text: 'Lance comissões, viagens, despesas e consumo em poucos passos.',
   },
   {
     number: '03',
-    title: 'Renova ou indica',
+    title: 'Acompanhe seus resultados',
     text:
-      'Mercado Pago, campanhas e indicação ficam centralizados, com descontos progressivos quando a campanha estiver ativa.',
+      'Consulte resumos e relatórios e compartilhe o PDF quando precisar.',
   },
 ];
 
@@ -111,7 +111,7 @@ export default function Home() {
 
           <nav className="topnav">
             <a href="#produto">Produto</a>
-            <a href="#download">Download</a>
+            <a href="#download">Começar</a>
             <a href="#planos">Planos</a>
             <a href="#contato">Contato</a>
           </nav>
@@ -122,41 +122,33 @@ export default function Home() {
             <div className="hero-grid">
               <div className="hero-content">
                 <div className="eyebrow">
-                  Teste grátis, pagamento, relatórios e indicação
+                  Feito para a rotina na estrada
                 </div>
                 <h1>Minha Comissão</h1>
                 <p className="lead">
-                  Um app direto ao ponto para controlar comissões, viagens,
-                  despesas, consumo e cobrança. O foco é dar leitura rápida,
-                  relatório confiável e menos trabalho manual no dia a dia.
+                  Controle comissões, viagens, despesas e consumo em um só
+                  lugar, com leitura rápida, relatórios confiáveis e menos
+                  trabalho manual no dia a dia.
                 </p>
 
                 <div className="hero-points">
-                  <span>Android e iOS</span>
+                  <span>Android, iPhone e computador</span>
                   <span>PDF pronto</span>
                   <span>Mercado Pago</span>
                   <span>Ajuda contextual</span>
                 </div>
 
-                <div className="hero-actions">
-                  <a
-                    className="button primary"
-                    href="#download"
-                  >
-                    Criar conta
-                  </a>
-                  <a className="button secondary" href="#produto">
-                    Ver o produto
-                  </a>
-                </div>
+                <Suspense fallback={null}>
+                  <DownloadReferralPanel />
+                </Suspense>
               </div>
 
               <aside className="hero-console">
                 <section className="console-card accent sage">
-                  <strong>Fluxo comercial</strong>
+                  <strong>Lançamentos práticos</strong>
                   <span>
-                    Teste grátis, renovação, campanha, indicação e acesso
-                    bloqueado com liberação rápida.
+                    Registre a rotina com poucos campos e encontre tudo de
+                    forma organizada.
                   </span>
                 </section>
 
@@ -168,20 +160,15 @@ export default function Home() {
                 </section>
 
                 <section className="console-card accent warm">
-                  <strong>Administração</strong>
+                  <strong>Acesso em qualquer tela</strong>
                   <span>
-                    Painel para ajustar planos, textos de ajuda, campanhas e
-                    pagamentos sem retrabalho.
+                    Use no Android, iPhone, iPad, notebook ou computador.
                   </span>
                 </section>
               </aside>
             </div>
           </div>
         </section>
-
-        <Suspense fallback={null}>
-          <DownloadReferralPanel />
-        </Suspense>
 
         <section className="section" id="produto">
           <div className="section-header">
@@ -246,10 +233,10 @@ export default function Home() {
 
         <section className="section" id="planos">
           <div className="section-header">
-            <h2>Planos configuráveis</h2>
+            <h2>Escolha seu plano</h2>
             <p>
-              Valores e promoções ficam centralizados no painel administrativo,
-              com possibilidade de campanha geral ou por usuário.
+              Continue usando depois do teste grátis com o período que melhor
+              combina com sua rotina.
             </p>
           </div>
 
@@ -271,8 +258,8 @@ export default function Home() {
           <div className="section-header">
             <h2>Fluxo simples</h2>
             <p>
-              A experiência foi desenhada para não virar um painel pesado.
-              O usuário entra, registra e acompanha.
+              Do primeiro acesso ao relatório, tudo foi pensado para exigir
+              poucos passos.
             </p>
           </div>
 
@@ -346,17 +333,6 @@ export default function Home() {
               </div>
             </section>
 
-            <section className="contact-card muted">
-              <strong>Pronto para evoluir</strong>
-              <span>
-                O app já nasceu com base para ajuda contextual, campanhas de
-                indicação, termos de uso versionados e controle administrativo.
-              </span>
-              <div className="contact-note">
-                A página também serve como referência para ativação de produção
-                e para mostrar a proposta comercial do produto.
-              </div>
-            </section>
           </div>
         </section>
 
