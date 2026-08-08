@@ -15,7 +15,7 @@ const features = [
     eyebrow: 'Comissionado',
     title: 'Lançamentos por tipo de comissão',
     text:
-      'Frete por tonelada, frete bruto, frete líquido, km rodado ou valor fixo em uma rotina limpa e rápida.',
+      'Frete por Ton. Bruta, Frete por Ton. Líquida com descontos, frete bruto, frete líquido, km rodado ou valor fixo em uma rotina limpa e rápida.',
   },
   {
     eyebrow: 'Autônomo',
