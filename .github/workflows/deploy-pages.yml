@@ -32,7 +32,16 @@ jobs:
         run: npm ci
 
       - name: Build static site
-        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ vars.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+        run: |
+          test -n "$NEXT_PUBLIC_SUPABASE_URL"
+          case "$NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY" in
+            sb_publishable_*) ;;
+            *) echo "Configure uma chave publicável (nunca service_role)."; exit 1 ;;
+          esac
+          npm run build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
