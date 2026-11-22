@@ -1,5 +1,5 @@
 const CACHE_PREFIX = 'minha-comissao-shell-';
-const CACHE_NAME = `${CACHE_PREFIX}1.3.0-18-c72bbf3d9007`;
+const CACHE_NAME = `${CACHE_PREFIX}1.3.1-19-dc6a73d4ffd7`;
 const OFFLINE_URL = 'offline.html';
 
 self.addEventListener('install', (event) => {
